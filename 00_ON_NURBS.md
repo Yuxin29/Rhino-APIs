@@ -2,6 +2,9 @@
 
 This document organizes the large set of `ON_` classes from the OpenNURBS / Rhino geometry kernel into functional groups. It preserves the full conceptual structure of the system and explains how each part contributes to CAD and 3D modeling.
 
+⭐ base class for all
+📍 what I used for my plugin
+
 ---
 
 # 1. Fundamental Mathematics / Core Geometry Primitives
@@ -12,11 +15,10 @@ These are the lowest-level building blocks used across all geometry types.
 - ON_2dVector, ON_3dVector
 - ON_2fPoint, ON_3fVector
 - ON_Interval (numeric ranges)
+- ...
 
 **Purpose:**
 Define positions, directions, and ranges in space.
-
----
 
 ## Numeric & Engineering Units
 - ON_AngleValue
@@ -24,13 +26,12 @@ Define positions, directions, and ranges in space.
 - ON_MassProperties
 - ON_ScaleValue
 - ON_UnitSystem
+- ...
 
 **Purpose:**
 Handles real-world engineering units (mm, inches, degrees, etc.).
 
----
-
-## 📍 Math Utilities
+## Math Utilities
 - ON_Matrix
 - ON_Quaternion
 - ON_Xform (transformation matrix)
@@ -41,11 +42,11 @@ Used for transformations, rotations, scaling, and random sampling.
 
 ---
 
-# 📐 2. Core Geometry Base System
+# 2. Core Geometry Base System
 The root of all geometric objects.
 
 - ON_Geometry ⭐ (base class for all geometry)
-- ON_Object (serialization base class)
+- ON_Object 📍  (serialization base class)
 - ON_BoundingBox
 
 **Purpose:**
@@ -53,10 +54,10 @@ Provides common interface and bounding box computation.
 
 ---
 
-# 🧵 3. Curve System (1D Geometry)
+# 3. Curve System (1D Geometry)
 Represents curves and paths in space.
 
-## 📍 Basic Curves
+## Basic Curves
 - ON_Curve ⭐ (base class)
 - ON_Line
 - ON_Circle
@@ -64,9 +65,7 @@ Represents curves and paths in space.
 - ON_Ellipse
 - ON_Polyline
 
----
-
-## 📍 NURBS / Parametric Curves
+## NURBS / Parametric Curves
 - ON_NurbsCurve
 - ON_BezierCurve
 - ON_PolynomialCurve
@@ -74,9 +73,7 @@ Represents curves and paths in space.
 **Purpose:**
 Main representation for CAD-quality curves.
 
----
-
-## 📍 Composite Curves
+## Composite Curves
 - ON_PolyCurve
 - ON_LineCurve
 - ON_ArcCurve
@@ -86,7 +83,7 @@ Represents multi-segment or hybrid curves.
 
 ---
 
-# 🧩 4. Surface System (2D Parametric Geometry)
+# 4. Surface System (2D Parametric Geometry)
 Surfaces defined in (u, v) parameter space.
 
 - ON_Surface ⭐ (base class)
@@ -103,13 +100,13 @@ Used for smooth modeling of surfaces in CAD.
 
 ---
 
-# 🧱 5. BREP System (Boundary Representation - Solid Modeling)
+# 5. 📍 BREP System (Boundary Representation - Solid Modeling)
 Core structure for solid CAD modeling.
 
-## 📍 Core BREP Components
-- ON_Brep ⭐ (main solid object)
+## Core BREP Components
+- ON_Brep 📍⭐ (main solid object)
 - ON_BrepFace
-- ON_BrepEdge
+- ON_BrepEdge 📍
 - ON_BrepVertex
 - ON_BrepLoop
 - ON_BrepTrim
@@ -119,7 +116,7 @@ Defines solids using faces, edges, and vertices.
 
 ---
 
-# 🧊 6. Mesh System (Discrete Geometry)
+# 6. Mesh System (Discrete Geometry)
 Used for rendering and simulation.
 
 - ON_Mesh ⭐
@@ -132,7 +129,7 @@ GPU rendering, physics simulation, collision detection.
 
 ---
 
-# 🔷 7. SubD (Subdivision Surface Modeling)
+# 7. SubD (Subdivision Surface Modeling)
 Modern smooth modeling system.
 
 - ON_SubD ⭐
@@ -145,7 +142,7 @@ Used in high-quality organic modeling (cars, characters).
 
 ---
 
-# 🧱 8. Transformation System
+# 8. Transformation System
 Handles spatial transformations.
 
 - ON_Xform
@@ -158,7 +155,7 @@ Rotation, translation, scaling, and deformation.
 
 ---
 
-# 📦 9. Scene / Model Organization System
+# 9. Scene / Model Organization System
 Manages CAD scene structure.
 
 - ON_ModelComponent
@@ -172,7 +169,7 @@ Organizes objects into layers, groups, and reusable instances.
 
 ---
 
-# 🎨 10. Rendering System
+# 10. Rendering System
 Controls appearance and visual output.
 
 - ON_Material
@@ -185,10 +182,10 @@ Defines shading, lighting, and textures.
 
 ---
 
-# 📄 11. Annotation / Drafting System
+# 11. Annotation / Drafting System
 Used in technical drawings.
 
-- ON_Text
+- ON_Text 📍
 - ON_Dimension
 - ON_Leader
 - ON_Annotation
@@ -198,7 +195,7 @@ Adds engineering annotations and labels.
 
 ---
 
-# 🧾 12. File I/O System (Serialization)
+# 12. File I/O System (Serialization)
 Handles file saving/loading (.3dm format).
 
 - ON_BinaryArchive
@@ -211,7 +208,7 @@ Serialization of full CAD models.
 
 ---
 
-# 🔍 13. Geometry Analysis System
+# 13. Geometry Analysis System
 Used for measurement and computation.
 
 - ON_MassProperties
@@ -224,11 +221,11 @@ Computes area, volume, curvature, and intersections.
 
 ---
 
-# 🧠 14. Core Utilities / System Tools
+# 14. Core Utilities / System Tools
 Low-level infrastructure tools.
 
-- ON_String / ON_wString
-- ON_UUID
+- ON_String / ON_wString 📍
+- ON_UUID 📍
 - ON_ErrorLog
 - ON_StopWatch
 
@@ -237,7 +234,7 @@ Debugging, logging, identifiers, and string handling.
 
 ---
 
-# 🧩 Overall Architecture Summary
+# Overall Architecture Summary
 
 The OpenNURBS system can be understood as:
 
@@ -261,7 +258,7 @@ Model / Material / Annotation / IO / Transform systems
 
 ---
 
-# 🚀 Key Insight
+# Key Insight
 OpenNURBS is essentially a full CAD geometry kernel that supports:
 
 - Precise mathematical modeling (NURBS)
@@ -273,4 +270,3 @@ OpenNURBS is essentially a full CAD geometry kernel that supports:
 ---
 
 # End of Document
-
